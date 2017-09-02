@@ -1,0 +1,10 @@
+/*@import url('./themestyles/stroke-7/style.css');*/
+/*customtheme has bootstrap css so no need to import bootstrap.min.css*/
+/*Offline font-awesome*/
+@import url('/node_modules/font-awesome/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
+/*@import url('./themestyles/customtheme/style.css');
+@import url('/node_modules/react-bootstrap-table/css/react-bootstrap-table.css');*/
