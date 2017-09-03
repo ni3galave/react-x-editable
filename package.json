@@ -1,10 +1,24 @@
 {
   "name": "Editable",
-  "version": "",
-  "description": "",
+  "version": "0.0.1",
+  "description": "React X editable using react-bootstrap",
   "main": "index.js",
-  "repository": "",
-  "author": {},
+  "repository": {
+    "type": "git",
+   "url": "git+https://github.com/ni3galave/react-x-editable.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "editor",
+    "inline",
+    "input",
+    "popup",
+    "editable",
+    "x-editable",
+    "text"
+  ],
+  "author": "Nitin Galave",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "loadash": "0.0.1",
