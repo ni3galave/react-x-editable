@@ -11,7 +11,7 @@ import _ from 'lodash';
 import Text from './Text';
 import Textarea from './Textarea';
 import Select from './Select';
-import 'styles/editable.css';
+import '../css/editable.css';
 
 
 export default class Editable extends Component {

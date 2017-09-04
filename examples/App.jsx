@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {Label} from 'react-bootstrap';
-import Editable from 'src/Editable';
-import 'styles/plugin.css';
-import 'styles/demo.css';
+import Editable from '../libs/js/Editable';
+import './styles/plugin.css';
+import './styles/demo.css';
 export default class App extends Component {
     render(){
       return(
         <div className="demo">
-            <h1>React X-editable Demo</h1>
+            <h1>React X-editable Demos</h1>
             <hr/>
             <h2>Example</h2>
             <b>Popup Mode: </b>(click to edit)

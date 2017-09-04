@@ -2,19 +2,18 @@ const path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+console.log("ENV:"+process.env.NODE_ENV)
 var ENV = process.env.NODE_ENV,
     isProd = ENV === "production" ? true : false,
-    BUILD_DIR = path.resolve(__dirname, 'public'),
-    APP_DIR = path.resolve(__dirname, 'app'),
+    BUILD_DIR = path.resolve(__dirname, 'dist'),
+    APP_DIR = path.resolve(__dirname, './'),
     ROOT_DIR = path.resolve(__dirname),
     NODE_MODULES = path.resolve(__dirname, 'node_modules'),
     config = {
-        entry: APP_DIR + "/index.jsx",
+        entry: (isProd ? APP_DIR + "/libs/js/Editable.jsx" : APP_DIR + "/examples/index.jsx"),
         output: {
             path: (isProd ? BUILD_DIR : ROOT_DIR), //<- This path is use at build time
-            filename: "bundle.js", //<- This file is created under path which we specified in output.path
-            // publicPath: "/static/" //<- This path is for dev server. you cant see this folder
+            filename: "editable.js", //<- This file is created under path which we specified in output.path
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -23,7 +22,7 @@ var ENV = process.env.NODE_ENV,
                 filename: ROOT_DIR + '/index.html'
             }), new ExtractTextPlugin({
                 // Extracting all css in one file, and file name is based on what you specified in filename
-                filename: "style.css",
+                filename: "editable.css",
                 allChunks: true
             }), new webpack.ProvidePlugin({
                 "React": "react",
