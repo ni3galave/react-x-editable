@@ -30,6 +30,7 @@ export default class Text extends Component {
       <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
         {/*<ControlLabel>Label</ControlLabel>*/}
         <FormControl
+          autoFocus
           key={"FormControl"+this.props.name}
           type="text"
           placeholder="Enter text"

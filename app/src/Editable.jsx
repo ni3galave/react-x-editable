@@ -119,7 +119,6 @@ export default class Editable extends Component {
             key={"Text-"+this.state.name}
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
-            getValidationState={this.getValidationState.bind(this)}
             onSubmit={this.onSubmit.bind(this)}
             validation={this.validation}
             {...this.state}
@@ -131,7 +130,6 @@ export default class Editable extends Component {
             key={"Textarea-"+this.state.name}
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
-            getValidationState={this.getValidationState.bind(this)}
             onSubmit={this.onSubmit.bind(this)}
             validation={this.validation}
             {...this.state}
@@ -143,7 +141,6 @@ export default class Editable extends Component {
             key={"Select-"+this.state.name}
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
-            getValidationState={this.getValidationState.bind(this)}
             onSubmit={this.onSubmit.bind(this)}
             validation={this.validation}
             {...this.state}

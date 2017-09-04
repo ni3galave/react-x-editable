@@ -53,13 +53,14 @@ export default class Select extends Component {
         <FormGroup controlId="formControlsSelect" validationState={this.props.validation.type} >
             {/*<ControlLabel>Label</ControlLabel>*/}
             <FormControl
-              componentClass="select"
-              placeholder="select"
-              bsSize="small"
-              key={this.props.name}
-              value={ this.getValue() }
-              onChange={this.setValue.bind(this)}
-              onBlur={this.onBlur.bind(this)}
+                autoFocus
+                componentClass="select"
+                placeholder="select"
+                bsSize="small"
+                key={this.props.name}
+                value={ this.getValue() }
+                onChange={this.setValue.bind(this)}
+                onBlur={this.onBlur.bind(this)}
             >
               {this.getOptions()}
             </FormControl>

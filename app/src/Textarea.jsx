@@ -30,6 +30,7 @@ export default class Textarea extends Component {
     return (
         <FormGroup controlId="formBasicText" validationState={this.props.validation.type}>
          <FormControl
+             autoFocus
              style={{height: '200px'}}
              componentClass="textarea"
              bsSize="sm"

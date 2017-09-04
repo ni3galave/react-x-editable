@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Label} from 'react-bootstrap';
 import Editable from 'src/Editable';
 import 'styles/plugin.css';
 import 'styles/demo.css';
@@ -75,7 +76,7 @@ export default class App extends Component {
                               {value : 3, text: "Nashik"}
                             ]}
                             display={function(value){
-                              return (<span>City: <b>{value}</b></span>);
+                              return (<span><Label bsStyle="default">City:</Label><span>&nbsp;{value}</span></span>);
                             }}
                             />
                         </td>
@@ -101,14 +102,14 @@ export default class App extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td>Empty text field, required</td>
+                        <td>Empty text field, required with no buttons</td>
                         <td>
                           <Editable
                             name="username"
                             dataType="text"
                             title="Enter username"
                             placement="right"
-                            showButtons={true}
+                            showButtons={false}
                             validate={(value) => {
                               if(!value){
                                 return 'Required';
@@ -123,6 +124,7 @@ export default class App extends Component {
                           <Editable
                               name="description"
                               dataType="textarea"
+                              value="X editable using react bootstrap"
                               title="Enter description"
                               placement="right"
                               showButtons={true}
@@ -136,7 +138,7 @@ export default class App extends Component {
 
                             dataType="select"
                             name={"city"}
-                            value={2}
+                            value={1}
                             title="Please select city"
                             placement="right"
                             showButtons={true}
