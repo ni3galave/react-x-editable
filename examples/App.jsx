@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {Label} from 'react-bootstrap';
+// import Editable from '../libs/js/Editable';
 import Editable from '../libs/js/Editable';
 import './styles/plugin.css';
 import './styles/demo.css';
+import '../libs/css/editable.css';
+
 export default class App extends Component {
     render(){
       return(

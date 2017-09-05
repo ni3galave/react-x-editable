@@ -14,6 +14,8 @@ var ENV = process.env.NODE_ENV,
         output: {
             path: (isProd ? BUILD_DIR : ROOT_DIR), //<- This path is use at build time
             filename: "editable.js", //<- This file is created under path which we specified in output.path
+            library: 'Editable',
+            libraryTarget: 'umd',
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -26,7 +28,8 @@ var ENV = process.env.NODE_ENV,
                 allChunks: true
             }), new webpack.ProvidePlugin({
                 "React": "react",
-            })
+            }),
+
         ],
         resolve: {
             modules: [
@@ -38,9 +41,9 @@ var ENV = process.env.NODE_ENV,
         module: {
             loaders: [{
                 test: /\.jsx$/,
-                exclude: [/node_modules/, /app\/container/,/app\/component/,/app\/libs/,/app\/stores/,/app\/Helpers/,/app\/auth/],
+                exclude: [/node_modules/],
                 loader: "babel-loader",
-                include: [APP_DIR]
+                include: [APP_DIR],
             }, {
                 test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
                 loader: 'url-loader'

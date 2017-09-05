@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import ReactDOM, {findDOMNode} from 'react-dom';
-import {
-  Overlay,
-  Popover,
-  Button,
-  Form
-} from 'react-bootstrap';
 import _ from 'lodash';
+import {
+  Button,
+  Overlay,
+  Popover
+} from 'react-bootstrap';
+
 import Text from './Text';
 import Textarea from './Textarea';
 import Select from './Select';
-import '../css/editable.css';
+// import '../css/editable.css';
 
 
 export default class Editable extends Component {
