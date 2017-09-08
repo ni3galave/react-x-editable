@@ -16,6 +16,7 @@ var ENV = process.env.NODE_ENV,
             filename: "editable.js", //<- This file is created under path which we specified in output.path
             library: 'Editable',
             libraryTarget: 'umd',
+            umdNamedDefine: true
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -51,7 +52,11 @@ var ENV = process.env.NODE_ENV,
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("css-loader")
             }]
-        }
+        },
+        // externals: {
+        //     "react": "React",
+        //     "react-dom":"ReactDOM"
+        // }
     }
 
 if (!isProd) {

@@ -25,6 +25,14 @@ export default class Text extends Component {
       this.props.onSubmit();
     }
   }
+  handleKeyDown(target) {
+    if(target.keyCode == 13){
+      this.setValue(target);
+      this.props.onSubmit();
+    }else if(target.keyCode == 27){
+      this.props.setEditable(false)
+    }
+  }
   render(){
     return (
       <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
@@ -38,6 +46,7 @@ export default class Text extends Component {
           value={this.state.value}
           onChange={this.setValue.bind(this)}
           onBlur={this.onBlur.bind(this)}
+          onKeyDown={this.handleKeyDown.bind(this)}
         />
         {/*<FormControl.Feedback />*/}
         <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>

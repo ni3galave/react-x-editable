@@ -48,6 +48,14 @@ export default class Select extends Component {
     );
     return options;
   }
+  handleKeyDown(target) {
+    if(target.keyCode == 13){
+      this.setValue(target);
+      this.props.onSubmit();
+    }else if(target.keyCode == 27){
+      this.props.setEditable(false)
+    }
+  }
   render(){
     return (
         <FormGroup controlId="formControlsSelect" validationState={this.props.validation.type} >
@@ -61,6 +69,7 @@ export default class Select extends Component {
                 value={ this.getValue() }
                 onChange={this.setValue.bind(this)}
                 onBlur={this.onBlur.bind(this)}
+                onKeyDown={this.handleKeyDown.bind(this)}
             >
               {this.getOptions()}
             </FormControl>

@@ -5,7 +5,11 @@ import _ from 'lodash';
 import {
   Button,
   Overlay,
-  Popover
+  Popover,
+  FormGroup,
+  ControlLabel,
+  FormControl,
+  HelpBlock
 } from 'react-bootstrap';
 
 import Text from './Text';
@@ -47,14 +51,16 @@ export default class Editable extends Component {
       const option = _.find(options, {'value' : value});
       if(option && option.text) {
         this.value = option.text;
+        this.newValue = option.text;;
       }else {
         throw("No option found for specified value:"+ value)
       }
     }else {
       this.value = value;
+      this.newValue = value;
     }
     this.validation = {};
-    this.newValue = value;
+
   }
   setEditable = (editable) => {
     this.setState({editable});
@@ -120,6 +126,7 @@ export default class Editable extends Component {
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
             onSubmit={this.onSubmit.bind(this)}
+            setEditable={this.setEditable.bind(this)}
             validation={this.validation}
             {...this.state}
           />
@@ -131,6 +138,7 @@ export default class Editable extends Component {
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
             onSubmit={this.onSubmit.bind(this)}
+            setEditable={this.setEditable.bind(this)}
             validation={this.validation}
             {...this.state}
           />
@@ -142,6 +150,7 @@ export default class Editable extends Component {
             setValueToAnchor={this.setValueToAnchor.bind(this)}
             value={ this.value || defaultValue }
             onSubmit={this.onSubmit.bind(this)}
+            setEditable={this.setEditable.bind(this)}
             validation={this.validation}
             {...this.state}
           />
@@ -151,7 +160,12 @@ export default class Editable extends Component {
       if(mode == 'popup'){
         return (
           <div>
-            <Overlay show={editable} target={() => ReactDOM.findDOMNode(this.refs.target)} {...this.props}>
+            <Overlay
+                rootClose={true}
+                onHide={() => { this.setEditable(false) } }
+                show={editable}
+                target={() => ReactDOM.findDOMNode(this.editableAnchor)}
+                {...this.props}>
               <Popover id={"popover-positioned-"+placement} title={title} key={this.props.name}>
                 {content}
               </Popover>
@@ -168,8 +182,9 @@ export default class Editable extends Component {
     return (
       <div className="editable-container" key={this.props.name}>
         { !(mode == 'inline' && editable)
-            ? (<a ref="target"
+            ? (<a ref={ref => this.editableAnchor = ref}
                   onClick={this.setEditable.bind(this, true)}
+                  href="javascript:;"
                 > { this.getValueForAnchor() || 'empty' }
                 </a>
               )
