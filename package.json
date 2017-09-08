@@ -1,6 +1,6 @@
 {
   "name": "react-x-editable",
-  "version": "v0.0.2-beta",
+  "version": "v0.0.3-beta",
   "description": "React X editable using react-bootstrap.",
   "main": "dist/editable",
   "repository": {
