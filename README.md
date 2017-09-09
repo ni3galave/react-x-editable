@@ -15,4 +15,4 @@
 
  Then open [http://localhost:8080/](http://localhost:8080/) to see demo examples.
  
- ## Documentation comming soon..	
+ ## Documentation coming soon..	
