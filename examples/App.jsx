@@ -25,6 +25,7 @@ export default class App extends Component {
                               dataType="text"
                               mode="popup"
                               title="Please enter username"
+                              value={"ni3galave"}
                               placement="right"
                               showButtons={true}
                             />
@@ -203,8 +204,12 @@ export default class App extends Component {
                             dataType="custom"
                             mode="inline"
                             title="Please enter address"
+                            value={{city:'Mumbai',street:'LBS road',building: '202/12 Budha vihar'}}
                             customComponent={(props, state) =>{
                               return( <CustomComponent {...props} {...state}/> );
+                            }}
+                            display={function(value){
+                              return (<span><b>{value.city}</b>, {value.street}, {value.building}</span>);
                             }}
                           />
                         </td>
