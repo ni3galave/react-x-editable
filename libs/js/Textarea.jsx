@@ -42,7 +42,7 @@ export default class Textarea extends Component {
              style={{height: '200px'}}
              componentClass="textarea"
              bsSize="sm"
-             value={this.state.value}
+             value={this.state.value || ''}
              placeholder="Enter text"
              onChange={this.setValue.bind(this)}
              onBlur={this.onBlur.bind(this)}

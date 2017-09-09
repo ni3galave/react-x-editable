@@ -52,11 +52,7 @@ var ENV = process.env.NODE_ENV,
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("css-loader")
             }]
-        },
-        // externals: {
-        //     "react": "React",
-        //     "react-dom":"ReactDOM"
-        // }
+        }
     }
 
 if (!isProd) {

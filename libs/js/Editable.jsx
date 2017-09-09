@@ -15,7 +15,7 @@ import {
 import Text from './Text';
 import Textarea from './Textarea';
 import Select from './Select';
-// import '../css/editable.css';
+import Checklist from './Checklist';
 
 
 export default class Editable extends Component {
@@ -28,33 +28,44 @@ export default class Editable extends Component {
         dataType : props.dataType ? props.dataType : "text",
         name : props.name,
         display : props.display ? props.display : undefined,
+        disabled : props.disabled ? props.disabled : false,
         // only used when mode is popup
         title : props.title ? props.title : null,
-        placement : props.placement ? props.placement : "top",
+        placement : props.placement ? props.placement : "right",
         //Input
         bsInputClass :props.bsInputClass ? props.bsInputClass : "",
         bsInputSize :props.bsInputSize ? props.bsInputSize : "sm",
-        //Select
+        //Select & checklist
         options : props.options ? props.options : null,
+        //checklist
+        optionsInline : props.inline ? props.inline : false,
         //for internal use
         editable: false,
         valueUpdated : false,
+        customComponent :props.customComponent ? props.customComponent : null,
       };
-      // this.value = props.value;
-      // this.validation = {};
       this.setInitialValue();
 
   }
   setInitialValue = () => {
     const { dataType, options, value } = this.props;
-    if(dataType == "select"){
-      const option = _.find(options, {'value' : value});
-      if(option && option.text) {
-        this.value = option.text;
-        this.newValue = option.text;;
-      }else {
-        throw("No option found for specified value:"+ value)
+    if(dataType == "select" || dataType == "checklist"){
+      if( options == null ) {
+        throw("Please specify options for "+dataType+" data type");
       }
+      if(value && _.isEmpty(value)){
+        const option = _.find(options, {'value' : value});
+        if(option && option.text) {
+          this.value = option.text;
+          this.newValue = option.text;;
+        }else {
+          throw("No option found for specified value:"+ value)
+        }
+      }else{
+        this.value = value;
+        this.newValue = value;
+      }
+
     }else {
       this.value = value;
       this.newValue = value;
@@ -63,7 +74,7 @@ export default class Editable extends Component {
 
   }
   setEditable = (editable) => {
-    this.setState({editable});
+    if(!this.state.disabled) this.setState({editable});
   }
   onSubmit = () => {
     this.validation = this.getValidationState();
@@ -86,6 +97,19 @@ export default class Editable extends Component {
   getValueForAnchor(){
     if(this.props.display){
       return this.props.display(this.value);
+    }
+    if(this.props.seperator && _.isArray(this.value)){
+      return _.join(this.value, this.props.seperator);
+    }
+    if(_.isArray(this.value)){
+      return _.join(this.value, ',');
+    }
+    if(_.isObject(this.value)){
+      let tmp = '';
+      _.forOwn(this.value, function(value, key) {
+        tmp += key +":"+ value +" ";
+      } );
+      return tmp;
     }
     return this.value;
   }
@@ -111,51 +135,43 @@ export default class Editable extends Component {
       )
     }
     return null;
-
   }
   getContent(){
     const { editable, title, validate, showButtons,
             defaultValue, dataType, placement, mode, name
           } = this.state;
+
+    const componetProps = {
+      key: "editable-name-"+this.state.name,
+      setValueToAnchor: this.setValueToAnchor.bind(this),
+      value: this.value || defaultValue ,
+      onSubmit: this.onSubmit.bind(this),
+      setEditable: this.setEditable.bind(this),
+      validation: this.validation,
+    };
     const content = [];
     if (editable) {
-      if (dataType == 'text') {
-        content.push(
-          <Text
-            key={"Text-"+this.state.name}
-            setValueToAnchor={this.setValueToAnchor.bind(this)}
-            value={ this.value || defaultValue }
-            onSubmit={this.onSubmit.bind(this)}
-            setEditable={this.setEditable.bind(this)}
-            validation={this.validation}
-            {...this.state}
-          />
-        );
-      }else if (dataType == 'textarea') {
-        content.push(
-          <Textarea
-            key={"Textarea-"+this.state.name}
-            setValueToAnchor={this.setValueToAnchor.bind(this)}
-            value={ this.value || defaultValue }
-            onSubmit={this.onSubmit.bind(this)}
-            setEditable={this.setEditable.bind(this)}
-            validation={this.validation}
-            {...this.state}
-          />
-        );
-      }else if (dataType == 'select') {
-        content.push(
-          <Select
-            key={"Select-"+this.state.name}
-            setValueToAnchor={this.setValueToAnchor.bind(this)}
-            value={ this.value || defaultValue }
-            onSubmit={this.onSubmit.bind(this)}
-            setEditable={this.setEditable.bind(this)}
-            validation={this.validation}
-            {...this.state}
-          />
-        );
+      switch (dataType) {
+        case 'text':
+          content.push(<Text {...componetProps} {...this.state} />);
+          break;
+        case 'textarea':
+          content.push(<Textarea {...componetProps} {...this.state} />);
+          break;
+        case 'select':
+          content.push(<Select {...componetProps} {...this.state} />);
+          break;
+        case 'checklist':
+          content.push(<Checklist {...componetProps} {...this.state} />);
+          break;
+        case 'custom':
+          const customComponentContent = this.state.customComponent(componetProps, this.state)
+          content.push(customComponentContent);
+          break;
+        default: throw('Please set valid dataType:'+dataType)
+
       }
+
       content.push(this.getButtons());
       if(mode == 'popup'){
         return (
@@ -178,14 +194,17 @@ export default class Editable extends Component {
   }
 
   render() {
-    const { editable, title, validate, showButtons, defaultValue, dataType, mode} = this.state;
+    const { editable, title, validate, showButtons,
+            defaultValue, dataType, mode, disabled } = this.state;
+    const editableContainerClass = (disabled) ? "editable-disabled" : "editable-container";
     return (
-      <div className="editable-container" key={this.props.name}>
+      <div className={editableContainerClass} key={this.props.name}>
         { !(mode == 'inline' && editable)
             ? (<a ref={ref => this.editableAnchor = ref}
                   onClick={this.setEditable.bind(this, true)}
                   href="javascript:;"
-                > { this.getValueForAnchor() || 'empty' }
+                >
+                  { this.getValueForAnchor() || 'empty' }
                 </a>
               )
             : null
@@ -200,17 +219,20 @@ Editable.defaultProps = {
   showButtons : true,
   dataType : "text",
   mode : "inline",
+  disabled : false,
   //depend on mode
-  placement : "top",
+  placement : "right",
 };
 
 Editable.propTypes = {
     dataType : PropTypes.string.isRequired,
     name : PropTypes.string.isRequired,
     mode : PropTypes.string,
+    showButtons : PropTypes.bool,
+    disabled : PropTypes.bool,
     validate : PropTypes.func,
     display: PropTypes.func,
-    showButtons : PropTypes.bool,
+
 
     // only used when mode is popup
     title : PropTypes.string,

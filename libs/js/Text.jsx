@@ -43,7 +43,7 @@ export default class Text extends Component {
           type="text"
           placeholder="Enter text"
           bsSize="sm"
-          value={this.state.value}
+          value={this.state.value || ''}
           onChange={this.setValue.bind(this)}
           onBlur={this.onBlur.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
