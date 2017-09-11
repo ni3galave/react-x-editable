@@ -63,7 +63,7 @@ export default class App extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td>Simple select with custumizable display</td>
+                        <td>Simple select with customizable display</td>
                         <td>
                           <Editable
 
@@ -178,7 +178,7 @@ export default class App extends Component {
                         </td>
                     </tr>
                     <tr>
-                        <td>Simple select with custumizable display</td>
+                        <td>Simple select with customizable display</td>
                         <td>
                           <Editable
                             dataType="select"
