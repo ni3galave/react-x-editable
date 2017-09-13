@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   FormGroup,
-  ControlLabel,
   FormControl,
   HelpBlock
 } from 'react-bootstrap';
@@ -36,7 +35,6 @@ export default class Text extends Component {
   render(){
     return (
       <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
-        {/*<ControlLabel>Label</ControlLabel>*/}
         <FormControl
           autoFocus
           key={"FormControl"+this.props.name}
@@ -48,7 +46,6 @@ export default class Text extends Component {
           onBlur={this.onBlur.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
         />
-        {/*<FormControl.Feedback />*/}
         <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>
       </FormGroup>
 

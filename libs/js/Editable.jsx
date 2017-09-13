@@ -22,13 +22,14 @@ export default class Editable extends Component {
   constructor(props){
       super(props);
       this.state = {
-        mode : props.mode ? props.mode : "inline",
-        validate : props.validate ? props.validate : undefined,
-        showButtons : props.showButtons != undefined ? props.showButtons : true,
         dataType : props.dataType ? props.dataType : "text",
         name : props.name,
-        display : props.display ? props.display : undefined,
+        mode : props.mode ? props.mode : "inline",
         disabled : props.disabled ? props.disabled : false,
+        showButtons : props.showButtons != undefined ? props.showButtons : true,
+        validate : props.validate ? props.validate : undefined,
+        display : props.display ? props.display : undefined,
+
         // only used when mode is popup
         title : props.title ? props.title : null,
         placement : props.placement ? props.placement : "right",
@@ -39,10 +40,12 @@ export default class Editable extends Component {
         options : props.options ? props.options : null,
         //checklist
         optionsInline : props.inline ? props.inline : false,
+        //Required for customize input
+        customComponent :props.customComponent ? props.customComponent : null,
         //for internal use
         editable: false,
         valueUpdated : false,
-        customComponent :props.customComponent ? props.customComponent : null,
+
       };
       this.setInitialValue();
 
@@ -95,23 +98,23 @@ export default class Editable extends Component {
     this.newValue = value;
   }
   getValueForAnchor(){
-    if(this.props.display){
-      return this.props.display(this.value);
-    }
-    if(this.props.seperator && _.isArray(this.value)){
-      return _.join(this.value, this.props.seperator);
-    }
-    if(_.isArray(this.value)){
-      return _.join(this.value, ',');
-    }
-    if(_.isObject(this.value)){
-      let tmp = '';
-      _.forOwn(this.value, function(value, key) {
-        tmp += key +":"+ value +" ";
-      } );
-      return tmp;
+    if(this.value){
+      if(this.props.display){
+        return this.props.display(this.value);
+      } else if(this.props.seperator && _.isArray(this.value)){
+        return _.join(this.value, this.props.seperator);
+      }else if(_.isArray(this.value)){
+        return _.join(this.value, ',');
+      }else if(_.isObject(this.value)){
+        let tmp = '';
+        _.forOwn(this.value, function(value, key) {
+          tmp += key +":"+ value +" ";
+        } );
+        return tmp;
+      }
     }
     return this.value;
+
   }
   getValidationState(){
     if(this.props.validate){

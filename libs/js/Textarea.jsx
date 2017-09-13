@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   FormGroup,
-  ControlLabel,
   FormControl,
   HelpBlock
 } from 'react-bootstrap';
@@ -48,7 +47,6 @@ export default class Textarea extends Component {
              onBlur={this.onBlur.bind(this)}
              onKeyDown={this.handleKeyDown.bind(this)}
            />
-         {/*<FormControl.Feedback />*/}
            <HelpBlock>{this.props.validation.msg}</HelpBlock>
        </FormGroup>
       )

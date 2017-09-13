@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {
   FormGroup,
-  ControlLabel,
-  FormControl,
   HelpBlock
 } from 'react-bootstrap';
 export default class Select extends Component {
@@ -28,7 +26,7 @@ export default class Select extends Component {
     });
     this.setState({ value: option.text });
     if( e.target.value == "select"){
-      this.props.setValueToAnchor("empty");
+      this.props.setValueToAnchor(undefined);
       return;
     }
     this.props.setValueToAnchor(option.text);
@@ -59,7 +57,6 @@ export default class Select extends Component {
   render(){
     return (
         <FormGroup controlId="formControlsSelect" validationState={this.props.validation.type} >
-            {/*<ControlLabel>Label</ControlLabel>*/}
             <FormControl
                 autoFocus
                 componentClass="select"
@@ -73,7 +70,6 @@ export default class Select extends Component {
             >
               {this.getOptions()}
             </FormControl>
-            {/*<FormControl.Feedback />*/}
             <HelpBlock>{this.props.validation.msg}</HelpBlock>
           </FormGroup>
         )

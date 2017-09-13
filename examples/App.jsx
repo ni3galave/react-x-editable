@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Label} from 'react-bootstrap';
-// import Editable from '../libs/js/Editable';
 import Editable from '../libs/js/Editable';
 import CustomComponent from './CustomComponent';
 import './styles/plugin.css';

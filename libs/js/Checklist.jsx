@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {
   FormGroup,
-  ControlLabel,
-  FormControl,
-  HelpBlock,
   Checkbox
 } from 'react-bootstrap';
 import _ from 'lodash';
