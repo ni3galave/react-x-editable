@@ -1,3 +1,7 @@
+[![NPM](https://img.shields.io/npm/v/react-x-editable.svg)](https://www.npmjs.com/package/react-x-editable) ![License](https://img.shields.io/npm/l/react-x-editable.svg)
+
+[![NPM](https://nodei.co/npm/react-x-editable.png)](https://nodei.co/npm/react-x-editable/)
+
 # react-x-editable
  X-editable for react using [react-bootstrap](https://react-bootstrap.github.io/).		
 
