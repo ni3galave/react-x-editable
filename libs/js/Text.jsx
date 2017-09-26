@@ -16,7 +16,7 @@ export default class Text extends Component {
   }
   setValue = (e) =>{
     this.setState({ value: e.target.value });
-    this.props.setValueToAnchor(e.target.value);
+    this.props.setValueToAnchor(e.target.value, e);
   }
   onBlur(e){
     if( !this.props.showButtons ){

@@ -35,7 +35,7 @@ export default class Checklist extends Component {
     }
     this.setState({ value : values});
     const texts = _.map(values, (val) => { return val.text})
-    this.props.setValueToAnchor(texts);
+    this.props.setValueToAnchor(texts, e);
 
   }
   onBlur(e){

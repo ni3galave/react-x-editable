@@ -27,10 +27,10 @@ export default class Select extends Component {
     });
     this.setState({ value: option.text });
     if( e.target.value == "select"){
-      this.props.setValueToAnchor(undefined);
+      this.props.setValueToAnchor(undefined, e);
       return;
     }
-    this.props.setValueToAnchor(option.text);
+    this.props.setValueToAnchor(option.text, e);
   }
   onBlur(e){
     if( !this.props.showButtons ){
@@ -63,7 +63,7 @@ export default class Select extends Component {
                 componentClass="select"
                 placeholder="select"
                 bsSize="small"
-                key={this.props.name}
+                key={"form-control"+this.props.name}
                 value={ this.getValue() }
                 onChange={this.setValue.bind(this)}
                 onBlur={this.onBlur.bind(this)}

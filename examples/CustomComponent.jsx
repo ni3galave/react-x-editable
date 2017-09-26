@@ -24,7 +24,7 @@ export default class CustomComponent extends Component {
     const { value } = this.state;
     value[e.target.id] = e.target.value;
     this.setState({ value });
-    this.props.setValueToAnchor(value);
+    this.props.setValueToAnchor(value, e);
   }
   render(){
     return (

@@ -42,6 +42,7 @@ export default class Editable extends Component {
         optionsInline : props.inline ? props.inline : false,
         //Required for customize input
         customComponent :props.customComponent ? props.customComponent : null,
+        onInputChange : props.onInputChange ?  props.onInputChange : null,
         //for internal use
         editable: false,
         valueUpdated : false,
@@ -54,6 +55,8 @@ export default class Editable extends Component {
     if(nextProps.value != this.value){
         this.value = nextProps.value;
     }
+  }
+  componentDidMount() {
   }
   setInitialValue = () => {
     const { dataType, options, value } = this.props;
@@ -99,8 +102,12 @@ export default class Editable extends Component {
     //reset validation
     this.validation = {};
   }
-  setValueToAnchor(value){
+  setValueToAnchor(value, event){
     this.newValue = value;
+    //To trigger onInputChange event:user defined
+    if(this.props.onInputChange){
+      this.props.onInputChange(event);
+    }
   }
   getValueForAnchor(){
     if(this.value){
@@ -240,7 +247,7 @@ Editable.propTypes = {
     disabled : PropTypes.bool,
     validate : PropTypes.func,
     display: PropTypes.func,
-
+    onInputChange : PropTypes.func,
 
     // only used when mode is popup
     title : PropTypes.string,
