@@ -5,3 +5,8 @@
 .demo table {
   clear: both;
 }
+
+.panel.panel-default {
+    margin-bottom: 0px !important;
+    border: white !important;
+}

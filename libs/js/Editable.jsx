@@ -53,10 +53,8 @@ export default class Editable extends Component {
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.value != this.value){
-        this.value = nextProps.value;
+        this.setInitialValue();
     }
-  }
-  componentDidMount() {
   }
   setInitialValue = () => {
     const { dataType, options, value } = this.props;
@@ -195,7 +193,8 @@ export default class Editable extends Component {
                 rootClose={true}
                 onHide={() => { this.setEditable(false) } }
                 show={editable}
-                target={() => ReactDOM.findDOMNode(this.editableAnchor)}
+                target={() => ReactDOM.findDOMNode(this.refs.target)
+                }
                 {...this.props}>
               <Popover id={"popover-positioned-"+placement} title={title} key={this.props.name}>
                 {content}
@@ -213,9 +212,9 @@ export default class Editable extends Component {
             defaultValue, dataType, mode, disabled } = this.state;
     const editableContainerClass = (disabled) ? "editable-disabled" : "editable-container";
     return (
-      <div className={editableContainerClass} key={this.props.name}>
+      <div className={editableContainerClass} key={this.props.name} >
         { !(mode == 'inline' && editable)
-            ? (<a ref={ref => this.editableAnchor = ref}
+            ? (<a ref={"target"}
                   onClick={this.setEditable.bind(this, true)}
                   href="javascript:;"
                 >

@@ -59,7 +59,6 @@ export default class Select extends Component {
     return (
         <FormGroup controlId="formControlsSelect" validationState={this.props.validation.type} >
             <FormControl
-                autoFocus
                 componentClass="select"
                 placeholder="select"
                 bsSize="small"

@@ -37,8 +37,7 @@ export default class CustomComponent extends Component {
           </Col>
           <Col sm={8}>
             <FormControl
-              autoFocus
-              key={"formControl-city-"+this.props.name}
+              key={"form-control-city-"+this.props.name}
               type="text"
               bsSize="sm"
               value={this.state.value.city || ''}
@@ -54,7 +53,7 @@ export default class CustomComponent extends Component {
           </Col>
           <Col sm={8}>
             <FormControl
-              key={"FormControl-street-"+this.props.name}
+              key={"form-control-street-"+this.props.name}
               type="text"
               bsSize="sm"
               value={this.state.value.street || ''}
@@ -69,7 +68,7 @@ export default class CustomComponent extends Component {
           </Col>
           <Col sm={8}>
             <FormControl
-              key={"FormControl-building-"+this.props.name}
+              key={"form-control-building-"+this.props.name}
               type="text"
               bsSize="sm"
               value={this.state.value.building || ''}
