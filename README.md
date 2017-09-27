@@ -30,10 +30,10 @@ react-x-editable allows text in place edit or click to edit functionality.
  Then open [http://localhost:8080/](http://localhost:8080/) to see demo examples.
 
 
-## [Live Demo](https://jpr7xpv8yw.codesandbox.io/)
+## [Live Demo](https://jpr7xpv8yw.codesandbox.io/)  |    [Documentation](https://codesandbox.io/embed/18nvy8nzoq)
 
 
-## Usage :
+## Quick Usage :
 Simple Text field example with popover edit mode.
  ```sh		
 import Editable from 'react-x-editable';
@@ -47,10 +47,12 @@ render(){
         mode="popup"
         title="Please enter username"
       />
-
     );
-
 }
+....
+...
+
 ```
 
-## Documentation coming soon..
+## License
+MIT.

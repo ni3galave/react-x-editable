@@ -31,7 +31,7 @@ export default class App extends Component {
       <div className="demo">
           <h1>React X-editable Demo</h1>
           <hr/>
-          <h2>Example</h2>
+          <h2>Examples</h2>
           <b>Popup Mode: </b>(click to edit)
           <table id="user" className="table table-bordered table-striped">
             <thead>

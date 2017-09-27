@@ -43,7 +43,7 @@ export default class Select extends Component {
       throw("Please specify options for select element");
     }
     const options = this.props.options.map( option =>
-      (<option value={option.value} key={option.value}>{option.text}</option>)
+      (<option value={option.value} key={"option-"+option.value}>{option.text}</option>)
     );
     return options;
   }
@@ -62,7 +62,7 @@ export default class Select extends Component {
                 componentClass="select"
                 placeholder="select"
                 bsSize="small"
-                key={"form-control"+this.props.name}
+                key={"form-control-"+this.props.name}
                 value={ this.getValue() }
                 onChange={this.setValue.bind(this)}
                 onBlur={this.onBlur.bind(this)}
