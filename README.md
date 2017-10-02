@@ -30,7 +30,7 @@ react-x-editable allows text in place edit or click to edit functionality.
  Then open [http://localhost:8080/](http://localhost:8080/) to see demo examples.
 
 
-## [Live Demo](https://jpr7xpv8yw.codesandbox.io/)  |    [Documentation](https://18nvy8nzoq.codesandbox.io/)
+## [Live Demo](https://react-x-editable.stackblitz.io/)  |    [Documentation](https://doc-react-x-editable.stackblitz.io)
 
 
 ## Quick Usage :
