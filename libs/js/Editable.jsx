@@ -16,6 +16,7 @@ import Text from './Text';
 import Textarea from './Textarea';
 import Select from './Select';
 import Checklist from './Checklist';
+import Select2 from './Select2';
 
 
 export default class Editable extends Component {
@@ -58,7 +59,7 @@ export default class Editable extends Component {
   }
   setInitialValue = () => {
     const { dataType, options, value } = this.props;
-    if(dataType == "select" || dataType == "checklist"){
+    if(dataType == "select" || dataType == "checklist" || dataType == "select2"){
       if( options == null ) {
         throw("Please specify options for "+dataType+" data type");
       }
@@ -180,6 +181,9 @@ export default class Editable extends Component {
         case 'custom':
           const customComponentContent = this.state.customComponent(componetProps, this.state)
           content.push(customComponentContent);
+          break;
+        case 'select2':
+          content.push(<Select2 {...componetProps} {...this.state}/>);
           break;
         default: throw('Please set valid dataType:'+dataType)
 
