@@ -17,6 +17,10 @@
 
 /* select2 css */
 
+.editable_control_select2 {
+  position: relative;
+}
+
 .editable_control_select2 .editable_select2 {
   width: 100%;
   border: 2px solid #ccc;
@@ -49,6 +53,8 @@
 .editable_control_select2 .select2_options_popover {
   border-radius: 0px;
   width: 100%;
+  max-width: 100%;
+  margin-top: 0px;
 }
 
 .editable_control_select2 .select2_options_popover .arrow {

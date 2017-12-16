@@ -57,6 +57,7 @@ export default class App extends Component {
                       simpleSelectCustomDispInline : !showAll,
                       simpleCheckboxlistInline : !showAll,
                       customComponentInline : !showAll,
+                      simpleSelect2FieldInline: !showAll,
                       showAll : !showAll,
                     })
                   }
@@ -334,6 +335,7 @@ export default class App extends Component {
     mode={"popup"}
     placement="right"
     showButtons={true}
+    value={1}
     options={[
       {value:1, text:"Mumbai"},
       {value:2, text:"Pune"},
@@ -543,6 +545,7 @@ export default class App extends Component {
     mode={"inline"}
     placement="right"
     showButtons={true}
+    value={1}
     options={[
       {value:1, text:"Mumbai"},
       {value:2, text:"Pune"},
