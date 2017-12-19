@@ -17,12 +17,14 @@ export default class App extends Component {
       simpleCheckboxlist : false,
       customComponent : false,
       simpleTextWithDisabled : false,
+      simpleSelect2Field: false,
       simpleTextFieldInline : false,
       emptyRequiredTextFieldInline : false,
       simpleTexareatFieldInline : false,
       simpleSelectCustomDispInline : false,
       simpleCheckboxlistInline : false,
       customComponentInline : false,
+      simpleSelect2FieldInline: false,
       showAll : false
     }
   }
@@ -55,6 +57,7 @@ export default class App extends Component {
                       simpleSelectCustomDispInline : !showAll,
                       simpleCheckboxlistInline : !showAll,
                       customComponentInline : !showAll,
+                      simpleSelect2FieldInline: !showAll,
                       showAll : !showAll,
                     })
                   }
@@ -311,6 +314,43 @@ export default class App extends Component {
 
                                   </td>
                   </tr>
+                  <tr>
+                    <td width="35%">Simple select2 field</td>
+                    <td width="65%">
+                      <Editable
+                        name="select2"
+                        dataType="select2"
+                        value={1}
+                        mode={"popup"}
+                        options={[
+                          {value:1, text:"Mumbai"},
+                          {value:2, text:"Pune"},
+                          {value:3, text:"Nashik"}
+                        ]}
+                      />
+                    <Panel collapsible expanded={this.state.simpleSelect2Field} >
+                          <pre> {`<Editable
+    name="select2"
+    dataType="select2"
+    mode={"popup"}
+    placement="right"
+    showButtons={true}
+    value={1}
+    options={[
+      {value:1, text:"Mumbai"},
+      {value:2, text:"Pune"},
+      {value:3, text:"Nashik"}
+    ]}
+/>`}</pre>
+
+                        </Panel>
+                    </td>
+                    <td width="65%">
+                       <Button bsStyle="link" bsSize="xsmall" onClick={ ()=> this.setState({ simpleSelect2Field: !this.state.simpleSelect2Field })}>
+                         <i className="fa fa-code" title="show/hide code"></i>
+                       </Button>
+                    </td>
+                  </tr>
               </tbody>
           </table>
           <br/>
@@ -483,6 +523,43 @@ export default class App extends Component {
                              <i className="fa fa-code" title="show/hide code"></i>
                            </Button>
                         </td>
+                  </tr>
+                  <tr>
+                    <td width="35%">Simple select2 field</td>
+                    <td width="65%">
+                      <Editable
+                        name="select2"
+                        dataType="select2"
+                        value={1}
+                        mode="inline"
+                        options={[
+                          {value:1, text:"Mumbai"},
+                          {value:2, text:"Pune"},
+                          {value:3, text:"Nashik"}
+                        ]}
+                      />
+                    <Panel collapsible expanded={this.state.simpleSelect2FieldInline} >
+                          <pre> {`<Editable
+    name="select2"
+    dataType="select2"
+    mode={"inline"}
+    placement="right"
+    showButtons={true}
+    value={1}
+    options={[
+      {value:1, text:"Mumbai"},
+      {value:2, text:"Pune"},
+      {value:3, text:"Nashik"}
+    ]}
+/>`}</pre>
+
+                        </Panel>
+                    </td>
+                    <td width="65%">
+                       <Button bsStyle="link" bsSize="xsmall" onClick={ ()=> this.setState({ simpleSelect2FieldInline: !this.state.simpleSelect2FieldInline })}>
+                         <i className="fa fa-code" title="show/hide code"></i>
+                       </Button>
+                    </td>
                   </tr>
               </tbody>
           </table>

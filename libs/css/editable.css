@@ -14,3 +14,65 @@
   color: gray;
   cursor: default;
 }
+
+/* select2 css */
+
+.editable_control_select2 {
+  position: relative;
+}
+
+.editable_control_select2 .editable_select2 {
+  width: 100%;
+  border: 2px solid #ccc;
+  padding: 5px;
+}
+
+.editable_control_select2 .editable_select2_input {
+  border: none;
+}
+
+.editable_control_select2 .editable_select2_input:focus {
+  outline: none;
+}
+
+.editable_control_select2 .editable_select2_wrapper {
+  border: 1px solid #ccc;
+  padding: 2px;
+  margin: 2px;
+  background-color: lightgray;
+}
+
+.editable_control_select2 .editable_select2_value {
+  margin: 2px;
+}
+
+.editable_control_select2 .editable_select2_close {
+  margin: 2px;
+}
+
+.editable_control_select2 .select2_options_popover {
+  border-radius: 0px;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0px;
+}
+
+.editable_control_select2 .select2_options_popover .arrow {
+  display: none;
+}
+
+.select2_options_popover .popover-content{
+  padding: 0px;
+}
+
+.select2_options_popover select {
+  width: 100%;
+  border: none;
+}
+
+.select2_options_popover .option {
+  padding: 5px 10px 5px 10px;
+  display: block;
+}
+
+/* select2 css end */
