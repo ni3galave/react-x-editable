@@ -25,7 +25,16 @@ export default class App extends Component {
       customComponentInline : false,
       showAll : false
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  handleSubmit(target){
+      if (target){
+          console.log("hello world")
+      }
+  }
+
   render(){
     return(
       <div className="demo">
@@ -326,6 +335,7 @@ export default class App extends Component {
                             mode={"inline"}
                             title="Enter username"
                             value="ni3galave"
+                            handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleTextFieldInline} >
                                         <pre> {`<Editable
