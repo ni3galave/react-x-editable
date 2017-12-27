@@ -85,14 +85,21 @@ export default class Editable extends Component {
   setEditable = (editable) => {
     if(!this.state.disabled) this.setState({editable});
   }
+
+  handleSubmit (target, ) {
+    console.log("DK===============")
+    console.log(target)
+    console.log("DK===============")
+  }
+
   onSubmit = () => {
     this.validation = this.getValidationState();
     if(this.validation.type === "error"){
       this.setState({ valueUpdated : false});
     }else {
       this.value = this.newValue;
-      this.setEditable(false)
-      this.setState({ valueUpdated : true});
+      this.setEditable(false);
+      this.setState({ valueUpdated : true}, () => this.handleSubmit(this));
     }
   }
   onCancel = () => {
