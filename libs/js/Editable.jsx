@@ -43,6 +43,8 @@ export default class Editable extends Component {
         //Required for customize input
         customComponent :props.customComponent ? props.customComponent : null,
         onInputChange : props.onInputChange ?  props.onInputChange : null,
+        //handle callback if provided
+        handleSubmit : props.handleSubmit ? props.handleSubmit : null,
         //for internal use
         editable: false,
         valueUpdated : false,
@@ -86,12 +88,6 @@ export default class Editable extends Component {
     if(!this.state.disabled) this.setState({editable});
   }
 
-  handleSubmit (target, ) {
-    console.log("DK===============")
-    console.log(target)
-    console.log("DK===============")
-  }
-
   onSubmit = () => {
     this.validation = this.getValidationState();
     if(this.validation.type === "error"){
@@ -99,7 +95,7 @@ export default class Editable extends Component {
     }else {
       this.value = this.newValue;
       this.setEditable(false);
-      this.setState({ valueUpdated : true}, () => this.handleSubmit(this));
+      this.setState({ valueUpdated : true}, this.state.handleSubmit ? () => this.state.handleSubmit(this) : null);
     }
   }
   onCancel = () => {
@@ -253,6 +249,9 @@ Editable.propTypes = {
     validate : PropTypes.func,
     display: PropTypes.func,
     onInputChange : PropTypes.func,
+
+    //handle callback if provided
+    handleSubmit : PropTypes.func,
 
     // only used when mode is popup
     title : PropTypes.string,
