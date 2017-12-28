@@ -95,7 +95,7 @@ export default class Editable extends Component {
     }else {
       this.value = this.newValue;
       this.setEditable(false);
-      this.setState({ valueUpdated : true}, () => this.state.handleSubmit(this));
+      this.setState({ valueUpdated : true}, this.state.handleSubmit ? () => this.state.handleSubmit(this) : null);
     }
   }
   onCancel = () => {

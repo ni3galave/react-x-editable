@@ -30,8 +30,25 @@ export default class App extends Component {
   }
 
   handleSubmit(target){
-      if (target){
-          console.log("hello world")
+      if (target && target.props){
+
+          switch (target.props.dataType)
+          {
+              case "select":
+                  console.log("Selected Value: " + target.value)
+                  break;
+              case "text":
+                  console.log("Entered Value: " + target.value)
+                  break;
+              case "textarea":
+                  console.log("Entered Text: " + target.value)
+                  break;
+              case "checklist":
+                  console.log("Checked Value: " + target.value)
+                  break;
+          }
+
+          console.log(target)
       }
   }
 
@@ -237,6 +254,7 @@ export default class App extends Component {
                             {value : 2, text: "Pune"},
                             {value : 3, text: "Nashik"}
                           ]}
+                          handleSubmit={this.handleSubmit}
                         />
                       <Panel collapsible expanded={this.state.simpleCheckboxlist} >
                                 <pre> {`<Editable
@@ -397,6 +415,7 @@ export default class App extends Component {
                             dataType="textarea"
                             value="X editable using react bootstrap"
                             title="Enter description"
+                            handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleTexareatFieldInline} >
                                             <pre> {`<Editable
@@ -430,6 +449,7 @@ export default class App extends Component {
                           display={function(value){
                             return (<span>City: <b>{value}</b></span>);
                           }}
+                          handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleSelectCustomDispInline} >
                                               <pre> {`<Editable
