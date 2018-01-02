@@ -16,7 +16,8 @@ import Text from './Text';
 import Textarea from './Textarea';
 import Select from './Select';
 import Checklist from './Checklist';
-
+import Date from './Date';
+//import Radio from './Radio';
 
 export default class Editable extends Component {
   constructor(props){
@@ -180,6 +181,12 @@ export default class Editable extends Component {
         case 'checklist':
           content.push(<Checklist {...componetProps} {...this.state} />);
           break;
+        case 'date':
+          content.push(<Date {...componetProps} {...this.state} />);
+          break;
+        // case 'radio':
+        //   content.push(<Radio {...componetProps} {...this.state} />);
+        //   break;
         case 'custom':
           const customComponentContent = this.state.customComponent(componetProps, this.state)
           content.push(customComponentContent);
