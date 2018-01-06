@@ -107,6 +107,8 @@ export default class App extends Component {
                           title="Enter username"
                           placement="right"
                           showButtons={true}
+                          emptyValueText="Enter Text"
+                          placeholder="Field is required"
                           validate={(value) => {
                             if(!value){
                               return 'Required';
@@ -145,6 +147,8 @@ export default class App extends Component {
                             mode={"popup"}
                             title="Enter description"
                             placement="right"
+                            emptyValueText="Enter Text"
+                            placeholder="Enter text in textarea"
                             showButtons={true}
                           />
                         <Panel collapsible expanded={this.state.simpleTexareatField} >

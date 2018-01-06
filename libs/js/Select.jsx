@@ -60,7 +60,7 @@ export default class Select extends Component {
         <FormGroup controlId="formControlsSelect" validationState={this.props.validation.type} >
             <FormControl
                 componentClass="select"
-                placeholder="select"
+                placeholder={this.props.placeholder}
                 bsSize="small"
                 key={"form-control-"+this.props.name}
                 value={ this.getValue() }
@@ -75,3 +75,7 @@ export default class Select extends Component {
         )
   }
 }
+
+Select.defaultProps = {
+  placeholder : "Enter text"
+};
