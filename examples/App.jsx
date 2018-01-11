@@ -23,9 +23,39 @@ export default class App extends Component {
       simpleSelectCustomDispInline : false,
       simpleCheckboxlistInline : false,
       customComponentInline : false,
+      dateElementInLine : false,
       showAll : false
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  handleSubmit(target){
+      if (target && target.props){
+
+          switch (target.props.dataType)
+          {
+              case "select":
+                  console.log("Selected Value: " + target.value)
+                  break;
+              case "text":
+                  console.log("Entered Value: " + target.value)
+                  break;
+              case "textarea":
+                  console.log("Entered Text: " + target.value)
+                  break;
+              case "checklist":
+                  console.log("Checked Value: " + target.value)
+                  break;
+              case "date":
+                  console.log("Checked Value: " + target.value)
+                  break;
+          }
+
+          console.log(target)
+      }
+  }
+
   render(){
     return(
       <div className="demo">
@@ -55,6 +85,7 @@ export default class App extends Component {
                       simpleSelectCustomDispInline : !showAll,
                       simpleCheckboxlistInline : !showAll,
                       customComponentInline : !showAll,
+                      dateElementInLine : !showAll,
                       showAll : !showAll,
                     })
                   }
@@ -228,6 +259,7 @@ export default class App extends Component {
                             {value : 2, text: "Pune"},
                             {value : 3, text: "Nashik"}
                           ]}
+                          handleSubmit={this.handleSubmit}
                         />
                       <Panel collapsible expanded={this.state.simpleCheckboxlist} >
                                 <pre> {`<Editable
@@ -326,6 +358,7 @@ export default class App extends Component {
                             mode={"inline"}
                             title="Enter username"
                             value="ni3galave"
+                            handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleTextFieldInline} >
                                         <pre> {`<Editable
@@ -387,6 +420,7 @@ export default class App extends Component {
                             dataType="textarea"
                             value="X editable using react bootstrap"
                             title="Enter description"
+                            handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleTexareatFieldInline} >
                                             <pre> {`<Editable
@@ -420,6 +454,7 @@ export default class App extends Component {
                           display={function(value){
                             return (<span>City: <b>{value}</b></span>);
                           }}
+                          handleSubmit={this.handleSubmit}
                           />
                         <Panel collapsible expanded={this.state.simpleSelectCustomDispInline} >
                                               <pre> {`<Editable
@@ -484,6 +519,75 @@ export default class App extends Component {
                            </Button>
                         </td>
                   </tr>
+
+
+                  <tr>
+                      <td width="35%">Simple date field</td>
+                      <td width="65%">
+                          <Editable
+                              name="selectedDate"
+                              dataType="date"
+                              mode={"inline"}
+                              title="Enter date"
+                              value="2017-12-31"
+                              handleSubmit={this.handleSubmit}
+                          />
+                          <Panel collapsible expanded={this.state.dateElementInLine} >
+                              <pre> {`<Editable
+                                  name="selectedDate"
+                                  dataType="date"
+                                  mode={"inline"}
+                                  title="Enter date"
+                                  value="2017-12-31"
+                                  handleSubmit={this.handleSubmit}
+                              />
+                              `}</pre>
+                          </Panel>
+                      </td>
+                      <td width="65%">
+                          <Button bsStyle="link" bsSize="xsmall" onClick={ ()=> this.setState({ dateElementInLine: !this.state.dateElementInLine })}>
+                              <i className="fa fa-code" title="show/hide code"></i>
+                          </Button>
+                      </td>
+                  </tr>
+
+
+{/*
+                  <tr>
+                      <td width="35%">Radio Buttons</td>
+                      <td width="65%">
+                          <Editable
+                              name="radio"
+                              dataType="radio"
+                              title="Please select Yes / No"
+                              mode={"inline"}
+                              optionsInline={false}
+                              value="Yes"
+                              options={[
+                                  {value : 1, text: "Yes"},
+                                  {value : 0, text: "No"}
+                              ]}
+                              handleSubmit={this.handleSubmit}
+                          />
+                          <Panel collapsible expanded={this.state.simpleTextFieldInline} >
+                                        <pre> {`<Editable
+    name="username"
+    dataType="text"
+    mode={"inline"}
+    title="Enter username"
+    value="ni3galave"
+/>`}</pre>
+
+                          </Panel>
+                      </td>
+                      <td width="65%">
+                          <Button bsStyle="link" bsSize="xsmall" onClick={ ()=> this.setState({ simpleTextFieldInline: !this.state.simpleTextFieldInline })}>
+                              <i className="fa fa-code" title="show/hide code"></i>
+                          </Button>
+                      </td>
+                  </tr>
+*/}
+
               </tbody>
           </table>
       </div>
