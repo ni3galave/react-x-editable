@@ -4,7 +4,7 @@ import {
   FormControl,
   HelpBlock
 } from 'react-bootstrap';
-export default class Text extends Component {
+export default class Date extends Component {
   constructor(props){
     super(props);
     this.state = {

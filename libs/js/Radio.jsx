@@ -4,7 +4,7 @@ import {
   Radio
 } from 'react-bootstrap';
 import _ from 'lodash';
-export default class Checklist extends Component {
+export default class Radio extends Component {
   constructor(props){
     super(props);
     this.state = {
