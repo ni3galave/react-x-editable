@@ -164,19 +164,19 @@ export default class Editable extends Component {
       value: this.value || defaultValue ,
       onSubmit: this.onSubmit.bind(this),
       setEditable: this.setEditable.bind(this),
-      validation: this.validation,
+      validation: this.validation
     };
     const content = [];
     if (editable) {
       switch (dataType) {
         case 'text':
-          content.push(<Text {...componetProps} {...this.state} />);
+          content.push(<Text {...this.props} {...componetProps} {...this.state} />);
           break;
         case 'textarea':
-          content.push(<Textarea {...componetProps} {...this.state} />);
+          content.push(<Textarea {...this.props} {...componetProps} {...this.state} />);
           break;
         case 'select':
-          content.push(<Select {...componetProps} {...this.state} />);
+          content.push(<Select {...this.props} {...componetProps} {...this.state} />);
           break;
         case 'checklist':
           content.push(<Checklist {...componetProps} {...this.state} />);
@@ -227,7 +227,7 @@ export default class Editable extends Component {
                   onClick={this.setEditable.bind(this, true)}
                   href="javascript:;"
                 >
-                  { this.getValueForAnchor() || 'empty' }
+                  { this.getValueForAnchor() || this.props.emptyValueText }
                 </a>
               )
             : null
@@ -243,6 +243,7 @@ Editable.defaultProps = {
   dataType : "text",
   mode : "inline",
   disabled : false,
+  emptyValueText : "empty",
   //depend on mode
   placement : "right",
 };
