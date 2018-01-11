@@ -154,6 +154,7 @@ export default class App extends Component {
     title="Enter username"
     placement="right"
     showButtons={true}
+    emptyValueText="Enter Text"
     validate={(value) => {
       if(!value){
         return 'Required';
@@ -189,6 +190,7 @@ export default class App extends Component {
     mode={"popup"}
     title="Enter description"
     placement="right"
+    emptyValueText="Enter Text"
     showButtons={true}
 />`}</pre>
 
