@@ -38,7 +38,7 @@ export default class Text extends Component {
         <FormControl
           key={"form-control"+this.props.name}
           type="text"
-          placeholder="Enter text"
+          placeholder={this.props.placeholder}
           bsSize="sm"
           value={this.state.value || ''}
           onChange={this.setValue.bind(this)}
@@ -51,3 +51,7 @@ export default class Text extends Component {
     );
   }
 }
+
+Text.defaultProps = {
+  placeholder : "Enter text"
+};

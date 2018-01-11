@@ -41,7 +41,7 @@ export default class Textarea extends Component {
              componentClass="textarea"
              bsSize="sm"
              value={this.state.value || ''}
-             placeholder="Enter text"
+             placeholder={this.props.placeholder}
              onChange={this.setValue.bind(this)}
              onBlur={this.onBlur.bind(this)}
              onKeyDown={this.handleKeyDown.bind(this)}
@@ -51,3 +51,7 @@ export default class Textarea extends Component {
       )
   }
 }
+
+Textarea.defaultProps = {
+  placeholder : "Enter text"
+};
