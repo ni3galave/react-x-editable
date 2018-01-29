@@ -51,16 +51,16 @@ export default class Editable extends Component {
         valueUpdated : false,
 
       };
-      this.setInitialValue();
+      this.setInitialValue(this.props);
 
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.value != this.value){
-        this.setInitialValue();
+        this.setInitialValue(nextProps);
     }
   }
-  setInitialValue = () => {
-    const { dataType, options, value } = this.props;
+  setInitialValue = (newProps) => {
+    const { dataType, options, value } = newProps;
     if(dataType == "select" || dataType == "checklist"){
       if( options == null ) {
         throw("Please specify options for "+dataType+" data type");
