@@ -4,18 +4,5 @@
         "transform-decorators-legacy",
         "transform-flow-strip-types",
         "transform-class-properties"
-    ],
-    "env": {
-        "development": {
-            "plugins": [
-                ["react-transform", {
-                    "transforms": [{
-                        "transform": "react-transform-hmr",
-                        "imports": ["react"],
-                        "locals": ["module"]
-                    }]
-                }]
-            ]
-        }
-    }
+    ]
 }

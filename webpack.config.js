@@ -2,9 +2,9 @@ const path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
-console.log("ENV:"+process.env.NODE_ENV)
-var ENV = process.env.NODE_ENV,
-    isProd = ENV === "production" ? true : false,
+    console.log("ENV:"+process.env.NODE_ENV)
+    var ENV = process.env.NODE_ENV,
+    isProd = (ENV != "development") ? true : false,
     BUILD_DIR = path.resolve(__dirname, 'dist'),
     APP_DIR = path.resolve(__dirname, './'),
     ROOT_DIR = path.resolve(__dirname),
