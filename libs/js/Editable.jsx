@@ -46,6 +46,8 @@ export default class Editable extends Component {
         onInputChange : props.onInputChange ?  props.onInputChange : null,
         //handle callback if provided
         handleSubmit : props.handleSubmit ? props.handleSubmit : null,
+        handleShow: props.handleShow ? () => props.handleShow(this) : null,
+        handleHide: props.handleHide ? () => props.handleHide(this) : null,
         //for internal use
         editable: false,
         valueUpdated : false,
@@ -86,7 +88,7 @@ export default class Editable extends Component {
 
   }
   setEditable = (editable) => {
-    if(!this.state.disabled) this.setState({editable});
+    if(!this.state.disabled) this.setState({editable}, editable ? this.state.handleShow : this.state.handleHide);
   }
 
   onSubmit = () => {

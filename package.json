@@ -20,12 +20,23 @@
   ],
   "author": "Nitin Galave",
   "dependencies": {
+    "ansi-html": "0.0.7",
+    "babel-runtime": "^6.26.0",
+    "fbjs": "^0.8.17",
     "font-awesome": "^4.7.0",
+    "html-entities": "^1.2.1",
     "loadash": "0.0.1",
+    "lodash": "^4.17.10",
+    "loglevel": "^1.6.1",
     "npm": "^4.6.1",
     "prop-types": "^15.5.10",
-    "react-bootstrap": "^0.31.0",
-    "react-css-modules": "^4.3.0"
+    "prop-types-extra": "^1.1.0",
+    "react-bootstrap": "^0.32.0",
+    "react-css-modules": "^4.3.0",
+    "react-overlays": "^0.8.3",
+    "sockjs-client": "^1.1.5",
+    "strip-ansi": "^4.0.0",
+    "uncontrollable": "^6.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -46,8 +57,8 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --progress --inline --hot --open",
-    "build": "NODE_ENV=production webpack -p",
+    "start": "set NODE_ENV=production && webpack-dev-server --port 8081 --progress --inline --hot --open",
+    "build": "set NODE_ENV=production && webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT"
