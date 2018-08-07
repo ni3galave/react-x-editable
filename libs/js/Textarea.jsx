@@ -4,6 +4,7 @@ import {
   FormControl,
   HelpBlock
 } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 export default class Textarea extends Component {
   constructor(props){
@@ -11,6 +12,12 @@ export default class Textarea extends Component {
     this.state = {
       value : props.value,
     };
+    this.textAreaField = React.createRef();
+  }
+  componentDidMount() {
+    const node = ReactDOM.findDOMNode(this.textAreaField);
+    node.focus();
+    node.select();
   }
   getValue = () =>{
     return this.state.value;
@@ -36,7 +43,7 @@ export default class Textarea extends Component {
   render(){
     return (
         <FormGroup controlId="formBasicTextarea" validationState={this.props.validation.type}>
-         <FormControl
+         <FormControl autoFocus
              style={{height: '200px'}}
              componentClass="textarea"
              bsSize="sm"
@@ -45,6 +52,7 @@ export default class Textarea extends Component {
              onChange={this.setValue.bind(this)}
              onBlur={this.onBlur.bind(this)}
              onKeyDown={this.handleKeyDown.bind(this)}
+             inputRef={ref => { this.textAreaField = ref; }}
            />
            <HelpBlock>{this.props.validation.msg}</HelpBlock>
        </FormGroup>
