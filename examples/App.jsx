@@ -214,6 +214,7 @@ export default class App extends Component {
                           title="Please select city"
                           placement="right"
                           showButtons={true}
+                          ignoreDefault={false}
                           options={[
                             {value : 1, text: "Mumbai"},
                             {value : 2, text: "Pune"},
@@ -451,6 +452,7 @@ export default class App extends Component {
                           dataType="select"
                           name={"cityInline"}
                           value={1}
+                          ignoreDefault={false}
                           title="Please select city"
                           options={[
                             {value : 1, text: "Mumbai"},

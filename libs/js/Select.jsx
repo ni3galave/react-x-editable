@@ -14,7 +14,9 @@ export default class Select extends Component {
   }
   setInitialOptions = () => {
     const options = this.props.options;
-    options.unshift({value : "select","text" : "select"});
+    if(!this.props.ignoreDefault) {
+      options.unshift({value : "select","text" : "select"});
+    }
     return options;
   }
   getValue = () =>{
@@ -77,5 +79,6 @@ export default class Select extends Component {
 }
 
 Select.defaultProps = {
-  placeholder : "Enter text"
+  placeholder : "Enter text",
+  ignoreDefault : false
 };

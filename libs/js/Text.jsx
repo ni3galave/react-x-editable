@@ -4,12 +4,20 @@ import {
   FormControl,
   HelpBlock
 } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
+
 export default class Text extends Component {
   constructor(props){
     super(props);
     this.state = {
       value : props.value,
     };
+    this.textField = React.createRef();
+  }
+  componentDidMount() {
+    const node = ReactDOM.findDOMNode(this.textField);
+    node.focus();
+    node.select();
   }
   getValue = () =>{
     return this.state.value;
@@ -35,7 +43,7 @@ export default class Text extends Component {
   render(){
     return (
       <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
-        <FormControl
+        <FormControl autoFocus
           key={"form-control"+this.props.name}
           type="text"
           placeholder={this.props.placeholder}
@@ -43,7 +51,8 @@ export default class Text extends Component {
           value={this.state.value || ''}
           onChange={this.setValue.bind(this)}
           onBlur={this.onBlur.bind(this)}
-          onKeyDown={this.handleKeyDown.bind(this)}
+          onKeyDown={this.handleKeyDown.bind(this)}  
+          inputRef={ref => { this.textField = ref; }}    
         />
         <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>
       </FormGroup>
