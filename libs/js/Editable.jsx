@@ -247,6 +247,7 @@ Editable.defaultProps = {
   mode : "inline",
   disabled : false,
   emptyValueText : "empty",
+  autoFocus: true,
   //depend on mode
   placement : "right",
 };
@@ -257,6 +258,7 @@ Editable.propTypes = {
     mode : PropTypes.string,
     showButtons : PropTypes.bool,
     disabled : PropTypes.bool,
+    autoFocus: PropTypes.bool,
     validate : PropTypes.func,
     display: PropTypes.func,
     onInputChange : PropTypes.func,

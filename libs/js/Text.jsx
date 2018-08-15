@@ -36,6 +36,7 @@ export default class Text extends Component {
     return (
       <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
         <FormControl
+          autoFocus={this.props.autoFocus}
           key={"form-control"+this.props.name}
           type="text"
           placeholder={this.props.placeholder}
