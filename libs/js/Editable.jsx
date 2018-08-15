@@ -114,10 +114,11 @@ export default class Editable extends Component {
     }
   }
   getValueForAnchor(){
+    if(this.props.display){
+      return this.props.display(this.value);
+    }
     if(this.value){
-      if(this.props.display){
-        return this.props.display(this.value);
-      } else if(this.props.seperator && _.isArray(this.value)){
+      if(this.props.seperator && _.isArray(this.value)){
         return _.join(this.value, this.props.seperator);
       }else if(_.isArray(this.value)){
         return _.join(this.value, ',');
