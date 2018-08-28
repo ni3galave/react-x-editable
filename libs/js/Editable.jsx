@@ -46,6 +46,8 @@ export default class Editable extends Component {
         onInputChange : props.onInputChange ?  props.onInputChange : null,
         //handle callback if provided
         handleSubmit : props.handleSubmit ? props.handleSubmit : null,
+        handleShow: props.handleShow ? () => props.handleShow(this) : null,
+        handleHide: props.handleHide ? () => props.handleHide(this) : null,
         //for internal use
         editable: false,
         valueUpdated : false,
@@ -86,7 +88,7 @@ export default class Editable extends Component {
 
   }
   setEditable = (editable) => {
-    if(!this.state.disabled) this.setState({editable});
+    if(!this.state.disabled) this.setState({editable}, editable ? this.state.handleShow : this.state.handleHide);
   }
 
   onSubmit = () => {
@@ -112,10 +114,11 @@ export default class Editable extends Component {
     }
   }
   getValueForAnchor(){
+    if(this.props.display){
+      return this.props.display(this.value);
+    }
     if(this.value){
-      if(this.props.display){
-        return this.props.display(this.value);
-      } else if(this.props.seperator && _.isArray(this.value)){
+      if(this.props.seperator && _.isArray(this.value)){
         return _.join(this.value, this.props.seperator);
       }else if(_.isArray(this.value)){
         return _.join(this.value, ',');
@@ -244,6 +247,7 @@ Editable.defaultProps = {
   mode : "inline",
   disabled : false,
   emptyValueText : "empty",
+  autoFocus: true,
   //depend on mode
   placement : "right",
 };
@@ -254,6 +258,7 @@ Editable.propTypes = {
     mode : PropTypes.string,
     showButtons : PropTypes.bool,
     disabled : PropTypes.bool,
+    autoFocus: PropTypes.bool,
     validate : PropTypes.func,
     display: PropTypes.func,
     onInputChange : PropTypes.func,

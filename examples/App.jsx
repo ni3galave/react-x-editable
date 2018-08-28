@@ -365,6 +365,8 @@ export default class App extends Component {
                             title="Enter username"
                             value="ni3galave"
                             handleSubmit={this.handleSubmit}
+							handleShow={function(arg){console.log('show', arg)}}
+							handleHide={function(arg){console.log('hide', arg)}}
                           />
                         <Panel collapsible expanded={this.state.simpleTextFieldInline} >
                                         <pre> {`<Editable
