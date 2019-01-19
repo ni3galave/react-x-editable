@@ -101,8 +101,9 @@ export default class Editable extends Component {
   }
   onCancel = () => {
     this.setEditable(false);
-    //reset validation
+    //reset validation and all the changes 
     this.validation = {};
+    this.newValue = this.value;
   }
   setValueToAnchor(value, event){
     this.newValue = value;
