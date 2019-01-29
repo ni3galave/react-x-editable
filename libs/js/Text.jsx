@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {
   FormGroup,
   FormControl,
-  HelpBlock
+  HelpBlock, Button, Form
 } from 'react-bootstrap';
+
 export default class Text extends Component {
   constructor(props){
     super(props);
@@ -33,21 +34,27 @@ export default class Text extends Component {
     }
   }
   render(){
+    let bs4Extra = (this.props.bootstrap4? "form-control-sm" : "")
     return (
-      <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
-        <FormControl
-          key={"form-control"+this.props.name}
-          type="text"
-          placeholder={this.props.placeholder}
-          bsSize="sm"
-          value={this.state.value || ''}
-          onChange={this.setValue.bind(this)}
-          onBlur={this.onBlur.bind(this)}
-          onKeyDown={this.handleKeyDown.bind(this)}
-        />
-        <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>
-      </FormGroup>
-
+        <React.Fragment>
+          <Form inline>
+            <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
+              <FormControl
+                  className={bs4Extra}
+                  key={"form-control"+this.props.name}
+                  type="text"
+                  placeholder={this.props.placeholder}
+                  bsSize="sm"
+                  value={this.state.value || ''}
+                  onChange={this.setValue.bind(this)}
+                  onBlur={this.onBlur.bind(this)}
+                  onKeyDown={this.handleKeyDown.bind(this)}
+              />
+            </FormGroup>{' '}
+            {this.props.buttons}
+          </Form>
+          <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>
+        </React.Fragment>
     );
   }
 }

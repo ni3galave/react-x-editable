@@ -145,14 +145,17 @@ export default class Editable extends Component {
   }
   getButtons(){
     if(this.state.showButtons){
+      let bs4Extra = (this.state.bootstrap4? "btn-sm" : "")
       return (
-        <div className="editable-btn" key={this.props.name+"editable-btn"}>
-          <Button bsStyle="success" bsSize="xsmall" onClick={this.onSubmit.bind(this)} key={"btn-success"+this.props.name}>
-            <i className="fa fa-check" key={"icon-fa-check"+this.props.name}></i></Button>
-          <Button bsStyle="danger" bsSize="xsmall" onClick={this.onCancel.bind(this)} key={"btn-danger"+this.props.name}>
+        <React.Fragment>
+          <Button bsStyle="success" bsSize="xsmall" onClick={this.onSubmit.bind(this)} key={"btn-success"+this.props.name}
+                  className={`${bs4Extra} ${(this.state.bootstrap4? "mx-1": "")}`}>
+            <i className="fa fa-check" key={"icon-fa-check"+this.props.name}></i></Button>{' '}
+          <Button bsStyle="danger" bsSize="xsmall" onClick={this.onCancel.bind(this)} key={"btn-danger"+this.props.name}
+                  className={bs4Extra}>
               <i className="fa fa-times" key={"icon-fa-times"+this.props.name}></i>
           </Button>
-        </div>
+        </React.Fragment>
       )
     }
     return null;
@@ -164,6 +167,7 @@ export default class Editable extends Component {
 
     const componetProps = {
       key: "editable-name-"+this.state.name,
+      bootstrap4: this.state.bootstrap4,
       setValueToAnchor: this.setValueToAnchor.bind(this),
       value: this.value || defaultValue ,
       onSubmit: this.onSubmit.bind(this),
@@ -174,19 +178,23 @@ export default class Editable extends Component {
     if (editable) {
       switch (dataType) {
         case 'text':
-          content.push(<Text {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Text {...this.props} {...componetProps} {...this.state} buttons={this.getButtons()}/>);
           break;
         case 'textarea':
           content.push(<Textarea {...this.props} {...componetProps} {...this.state} />);
+          content.push(this.getButtons());
           break;
         case 'select':
           content.push(<Select {...this.props} {...componetProps} {...this.state} />);
+          content.push(this.getButtons());
           break;
         case 'checklist':
           content.push(<Checklist {...componetProps} {...this.state} />);
+          content.push(this.getButtons());
           break;
         case 'date':
           content.push(<Date {...componetProps} {...this.state} />);
+          content.push(this.getButtons());
           break;
         // case 'radio':
         //   content.push(<Radio {...componetProps} {...this.state} />);
@@ -194,12 +202,12 @@ export default class Editable extends Component {
         case 'custom':
           const customComponentContent = this.state.customComponent(componetProps, this.state)
           content.push(customComponentContent);
+          content.push(this.getButtons());
           break;
         default: throw('Please set valid dataType:'+dataType)
 
       }
 
-      content.push(this.getButtons());
       if(mode == 'popup'){
         if(bootstrap4){
           return(
