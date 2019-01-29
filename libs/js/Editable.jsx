@@ -5,12 +5,14 @@ import _ from 'lodash';
 import {
   Button,
   Overlay,
-  Popover,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  HelpBlock
+  Popover
 } from 'react-bootstrap';
+import {
+  Popover as Popover4,
+  PopoverBody,
+  PopoverHeader
+} from 'reactstrap';
+
 
 import Text from './Text';
 import Textarea from './Textarea';
@@ -30,6 +32,7 @@ export default class Editable extends Component {
         showButtons : props.showButtons != undefined ? props.showButtons : true,
         validate : props.validate ? props.validate : undefined,
         display : props.display ? props.display : undefined,
+        bootstrap4 : props.bootstrap4 ? props.bootstrap4 : false,
 
         // only used when mode is popup
         title : props.title ? props.title : null,
@@ -101,7 +104,7 @@ export default class Editable extends Component {
   }
   onCancel = () => {
     this.setEditable(false);
-    //reset validation and all the changes 
+    //reset validation and all the changes
     this.validation = {};
     this.newValue = this.value;
   }
@@ -156,7 +159,7 @@ export default class Editable extends Component {
   }
   getContent(){
     const { editable, title, validate, showButtons,
-            defaultValue, dataType, placement, mode, name
+            defaultValue, dataType, placement, mode, name, bootstrap4
           } = this.state;
 
     const componetProps = {
@@ -198,20 +201,30 @@ export default class Editable extends Component {
 
       content.push(this.getButtons());
       if(mode == 'popup'){
-        return (
-          <div>
-            <Overlay
-                rootClose={true}
-                onHide={() => { this.setEditable(false) } }
-                show={editable}
-                target={() => ReactDOM.findDOMNode(this.editableAnchor)}
-                {...this.props}>
-              <Popover id={"popover-positioned-"+placement} title={title} key={this.props.name}>
-                {content}
-              </Popover>
-            </Overlay>
-          </div>
-        );
+        if(bootstrap4){
+          return(
+              <Popover4
+                  placement={placement}
+                  isOpen={editable}
+                  target={() => ReactDOM.findDOMNode(this.editableAnchor)}>
+                <PopoverHeader>{title}</PopoverHeader>
+                <PopoverBody>{content}</PopoverBody>
+              </Popover4>
+          )
+        }else{
+          return (
+              <Overlay
+                  rootClose={true}
+                  onHide={() => { this.setEditable(false) } }
+                  show={editable}
+                  target={() => ReactDOM.findDOMNode(this.editableAnchor)}
+                  {...this.props}>
+                <Popover id={"popover-positioned-"+placement} title={title} key={this.props.name}>
+                  {content}
+                </Popover>
+              </Overlay>
+          );
+        }
       }
       return content;
     }

@@ -24,7 +24,8 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.5.10",
     "react-bootstrap": "^0.31.0",
-    "react-css-modules": "^4.3.0"
+    "react-css-modules": "^4.3.0",
+    "reactstrap": "^7.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
