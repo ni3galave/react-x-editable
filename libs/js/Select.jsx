@@ -14,7 +14,10 @@ export default class Select extends Component {
   }
   setInitialOptions = () => {
     const options = this.props.options;
-    options.unshift({value : "select","text" : "select"});
+    const selectOpt = options.find((o) => { return o.value == "select" });
+    if( !selectOpt ){
+      options.unshift({value : "select","text" : "select"});
+    }
     return options;
   }
   getValue = () =>{
