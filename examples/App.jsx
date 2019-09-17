@@ -182,6 +182,7 @@ export default class App extends Component {
                             emptyValueText="Enter Text"
                             placeholder="Enter text in textarea"
                             showButtons={true}
+                            submitOnReturn={false}
                           />
                         <Panel collapsible expanded={this.state.simpleTexareatField} >
                               <pre> {`<Editable
@@ -192,6 +193,7 @@ export default class App extends Component {
     placement="right"
     emptyValueText="Enter Text"
     showButtons={true}
+    submitOnReturn={false}
 />`}</pre>
 
                             </Panel>
@@ -422,11 +424,12 @@ export default class App extends Component {
                       <td>Simple textarea</td>
                       <td>
                         <Editable
-                            name="descriptioInlinen"
+                            name="descriptionInline"
                             dataType="textarea"
                             value="X editable using react bootstrap"
                             title="Enter description"
                             handleSubmit={this.handleSubmit}
+                            submitOnReturn={false}
                           />
                         <Panel collapsible expanded={this.state.simpleTexareatFieldInline} >
                                             <pre> {`<Editable
@@ -434,6 +437,7 @@ export default class App extends Component {
     dataType="textarea"
     value="X editable using react bootstrap"
     title="Enter description"
+    submitOnReturn={false}
 />`}</pre>
 
                                           </Panel>
@@ -540,14 +544,13 @@ export default class App extends Component {
                           />
                           <Panel collapsible expanded={this.state.dateElementInLine} >
                               <pre> {`<Editable
-                                  name="selectedDate"
-                                  dataType="date"
-                                  mode={"inline"}
-                                  title="Enter date"
-                                  value="2017-12-31"
-                                  handleSubmit={this.handleSubmit}
-                              />
-                              `}</pre>
+    name="selectedDate"
+    dataType="date"
+    mode={"inline"}
+    title="Enter date"
+    value="2017-12-31"
+    handleSubmit={this.handleSubmit}
+/>`}</pre>
                           </Panel>
                       </td>
                       <td width="65%">
