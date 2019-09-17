@@ -159,7 +159,7 @@ export default class Editable extends Component {
             defaultValue, dataType, placement, mode, name
           } = this.state;
 
-    const componetProps = {
+    const componentProps = {
       key: "editable-name-"+this.state.name,
       setValueToAnchor: this.setValueToAnchor.bind(this),
       value: this.value || defaultValue ,
@@ -171,25 +171,25 @@ export default class Editable extends Component {
     if (editable) {
       switch (dataType) {
         case 'text':
-          content.push(<Text {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Text {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'textarea':
-          content.push(<Textarea {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Textarea {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'select':
-          content.push(<Select {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Select {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'checklist':
-          content.push(<Checklist {...componetProps} {...this.state} />);
+          content.push(<Checklist {...componentProps} {...this.state} />);
           break;
         case 'date':
-          content.push(<Date {...componetProps} {...this.state} />);
+          content.push(<Date {...componentProps} {...this.state} />);
           break;
         // case 'radio':
-        //   content.push(<Radio {...componetProps} {...this.state} />);
+        //   content.push(<Radio {...componentProps} {...this.state} />);
         //   break;
         case 'custom':
-          const customComponentContent = this.state.customComponent(componetProps, this.state)
+          const customComponentContent = this.state.customComponent(componentProps, this.state)
           content.push(customComponentContent);
           break;
         default: throw('Please set valid dataType:'+dataType)
