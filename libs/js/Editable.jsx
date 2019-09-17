@@ -30,6 +30,7 @@ export default class Editable extends Component {
         showButtons : props.showButtons != undefined ? props.showButtons : true,
         validate : props.validate ? props.validate : undefined,
         display : props.display ? props.display : undefined,
+        submitOnReturn : props.submitOnReturn != undefined ? props.submitOnReturn : true,
 
         // only used when mode is popup
         title : props.title ? props.title : null,
@@ -165,6 +166,7 @@ export default class Editable extends Component {
       value: this.value || defaultValue ,
       onSubmit: this.onSubmit.bind(this),
       setEditable: this.setEditable.bind(this),
+      submitOnReturn: this.submitOnReturn,
       validation: this.validation
     };
     const content = [];
@@ -245,6 +247,7 @@ Editable.defaultProps = {
   mode : "inline",
   disabled : false,
   emptyValueText : "empty",
+  submitOnReturn: true,
   //depend on mode
   placement : "right",
 };
@@ -258,6 +261,7 @@ Editable.propTypes = {
     validate : PropTypes.func,
     display: PropTypes.func,
     onInputChange : PropTypes.func,
+    submitOnReturn: PropTypes.bool,
 
     //handle callback if provided
     handleSubmit : PropTypes.func,
