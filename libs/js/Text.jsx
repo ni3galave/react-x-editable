@@ -1,42 +1,42 @@
-import React, {Component} from 'react';
-import {
-  FormGroup,
-  FormControl,
-  HelpBlock
-} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
 export default class Text extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      value : props.value,
+      value: props.value
     };
   }
-  getValue = () =>{
+  getValue = () => {
     return this.state.value;
-  }
-  setValue = (e) =>{
+  };
+  setValue = e => {
     this.setState({ value: e.target.value });
     this.props.setValueToAnchor(e.target.value, e);
-  }
-  onBlur(e){
-    if( !this.props.showButtons ){
+  };
+  onBlur(e) {
+    if (!this.props.showButtons) {
       this.setValue(e);
       this.props.onSubmit();
     }
   }
   handleKeyDown(target) {
-    if(target.keyCode == 13){
+    if (target.keyCode == 13) {
       this.setValue(target);
       this.props.onSubmit();
-    }else if(target.keyCode == 27){
-      this.props.setEditable(false)
+    } else if (target.keyCode == 27) {
+      this.props.setEditable(false);
     }
   }
-  render(){
+  render() {
     return (
-      <FormGroup controlId="formBasicText" validationState={this.props.validation.type} key={"FormGroup"+this.props.name}>
+      <FormGroup
+        controlId="formBasicText"
+        validationState={this.props.validation.type}
+        key={'FormGroup' + this.props.name}
+      >
         <FormControl
-          key={"form-control"+this.props.name}
+          key={'form-control' + this.props.name}
           type="text"
           placeholder={this.props.placeholder}
           bsSize="sm"
@@ -44,14 +44,16 @@ export default class Text extends Component {
           onChange={this.setValue.bind(this)}
           onBlur={this.onBlur.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
+          autoFocus={this.props.autoFocus}
         />
-        <HelpBlock key={"HelpBlock"+this.props.name}>{this.props.validation.msg}</HelpBlock>
+        <HelpBlock key={'HelpBlock' + this.props.name}>
+          {this.props.validation.msg}
+        </HelpBlock>
       </FormGroup>
-
     );
   }
 }
 
 Text.defaultProps = {
-  placeholder : "Enter text"
+  placeholder: 'Enter text'
 };
