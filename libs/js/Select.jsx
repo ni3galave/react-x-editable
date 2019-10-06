@@ -53,7 +53,9 @@ export default class Select extends Component {
   handleKeyDown(target) {
     if(target.keyCode == 13){
       this.setValue(target);
-      this.props.onSubmit();
+      if (this.props.submitOnReturn) {
+        this.props.onSubmit();
+      }
     }else if(target.keyCode == 27){
       this.props.setEditable(false)
     }

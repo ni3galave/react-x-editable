@@ -30,6 +30,7 @@ export default class Editable extends Component {
         showButtons : props.showButtons != undefined ? props.showButtons : true,
         validate : props.validate ? props.validate : undefined,
         display : props.display ? props.display : undefined,
+        submitOnReturn : props.submitOnReturn != undefined ? props.submitOnReturn : true,
 
         // only used when mode is popup
         title : props.title ? props.title : null,
@@ -159,37 +160,38 @@ export default class Editable extends Component {
             defaultValue, dataType, placement, mode, name
           } = this.state;
 
-    const componetProps = {
+    const componentProps = {
       key: "editable-name-"+this.state.name,
       setValueToAnchor: this.setValueToAnchor.bind(this),
       value: this.value || defaultValue ,
       onSubmit: this.onSubmit.bind(this),
       setEditable: this.setEditable.bind(this),
+      submitOnReturn: this.submitOnReturn,
       validation: this.validation
     };
     const content = [];
     if (editable) {
       switch (dataType) {
         case 'text':
-          content.push(<Text {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Text {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'textarea':
-          content.push(<Textarea {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Textarea {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'select':
-          content.push(<Select {...this.props} {...componetProps} {...this.state} />);
+          content.push(<Select {...this.props} {...componentProps} {...this.state} />);
           break;
         case 'checklist':
-          content.push(<Checklist {...componetProps} {...this.state} />);
+          content.push(<Checklist {...componentProps} {...this.state} />);
           break;
         case 'date':
-          content.push(<Date {...componetProps} {...this.state} />);
+          content.push(<Date {...componentProps} {...this.state} />);
           break;
         // case 'radio':
-        //   content.push(<Radio {...componetProps} {...this.state} />);
+        //   content.push(<Radio {...componentProps} {...this.state} />);
         //   break;
         case 'custom':
-          const customComponentContent = this.state.customComponent(componetProps, this.state)
+          const customComponentContent = this.state.customComponent(componentProps, this.state)
           content.push(customComponentContent);
           break;
         default: throw('Please set valid dataType:'+dataType)
@@ -245,6 +247,7 @@ Editable.defaultProps = {
   mode : "inline",
   disabled : false,
   emptyValueText : "empty",
+  submitOnReturn: true,
   //depend on mode
   placement : "right",
 };
@@ -258,6 +261,7 @@ Editable.propTypes = {
     validate : PropTypes.func,
     display: PropTypes.func,
     onInputChange : PropTypes.func,
+    submitOnReturn: PropTypes.bool,
 
     //handle callback if provided
     handleSubmit : PropTypes.func,
