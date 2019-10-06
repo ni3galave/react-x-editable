@@ -42,7 +42,7 @@
     "react-dom": "^16.4.0",
     "url-loader": "^1.1.2",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^3.1.11"
   },
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --progress --inline --hot --open",
