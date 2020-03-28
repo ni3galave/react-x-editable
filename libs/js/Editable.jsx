@@ -269,8 +269,7 @@ export default class Editable extends Component {
         {!(mode == 'inline' && editable) ? (
           <a
             ref={ref => (this.editableAnchor = ref)}
-            onClick={this.setEditable.bind(this, true)}
-            href="javascript:;"
+            onClick={(e) => {e.preventDefault(); this.setEditable(true)}}
           >
             {this.getValueForAnchor() || this.props.emptyValueText}
           </a>
