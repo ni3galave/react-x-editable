@@ -21,7 +21,7 @@
   "author": "Nitin Galave",
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "prop-types": "^15.5.10",
     "react-bootstrap": "^0.31.0",
     "react-css-modules": "^4.3.0"
